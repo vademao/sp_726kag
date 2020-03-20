@@ -1,0 +1,123 @@
+#!/bin/bash
+echo "Эта программа для выполнения операций над файлами"
+
+echo "Разработчик - Крючкова Алина Геннадьевна"
+
+echo "Какую операцию вы хотите выполнить?"
+
+while :
+do
+	echo    "Создание    Удаление     Перемещение"
+	echo    "   1            2            3"     
+
+	read number
+
+  if [[ $number == "1" || $number == "2" || $number  == "3" ]]
+                        then
+        	                if [ $number -eq  1 ]  
+					
+					then 
+
+			echo "Введите имя файла, который хотите создать"
+			read name1
+
+			while :
+			do
+				if [ -e $name1 ]
+					then
+						echo "Файл уже существует"
+						echo "Введите имя файла еще раз"
+						read name1
+					else
+						break
+				fi
+			done
+			
+			touch $name1
+			
+	fi
+
+	if [ $number -eq  2 ]  
+		then 
+			echo "Введите имя файла, который хотите удалить"
+			read name2
+
+			while :
+			do
+				if [ -e $name2 ]
+					then
+						break
+					else
+						echo "Файла не существует"
+						echo "Введите имя файла еще раз"
+						read name2
+				fi
+			done
+			
+			rm $name2
+			
+	fi
+
+	if [ $number -eq  3 ]  
+		then 
+			echo "Введите имя файла, который хотите переместить"
+			read name3
+
+			while :
+			do
+				if [ -e $name3 ]
+					then
+						break
+					else
+						echo "Файла не существует"
+						echo "Введите имя файла еще раз"
+						read name3
+				fi
+			done
+			
+			echo "Введите путь к каталогу"
+			read path
+
+			while :
+			do
+				if [ -d $path ]
+					then
+						break
+					else
+						echo "Каталога не существует"
+						echo "Введите путь к каталогу еще раз"
+						read path
+				fi
+			done
+			
+			mv $name3 $path
+			
+	fi
+                        else
+                                echo "Ошибка ввода"
+                fi
+
+	
+
+	while :
+        do
+                echo "Повторить? (y/n)"
+                read answer
+                if [[ $answer == "y" || $answer == "Y" || $answer  == "n" || $answer == "N" ]]
+                        then
+                                if [[ $answer == "n" || $answer == "N" ]]
+                                        then
+                                                exit 0
+                                        else
+                                                break
+                                fi
+                        else
+                                echo "Ошибка ввода"
+                fi
+        done
+
+	
+done
+
+
+
